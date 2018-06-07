@@ -2,6 +2,7 @@ sudo: false
 language: python
 stages:
 - linting
+- test-slow-first
 - test
 - deploy
 python:
@@ -15,31 +16,40 @@ env:
     # note: please use "tox --listenvs" to populate the build matrix below
     # please remove the linting env in all cases
     - TOXENV=py27
+      stage: test-slow-first
     - TOXENV=py34
+      stage: test-slow-first
     - TOXENV=py36
+      stage: test-slow-first
     - TOXENV=py27-pexpect
     - TOXENV=py27-xdist
     - TOXENV=py27-trial
     - TOXENV=py27-numpy
     - TOXENV=py27-pluggymaster
+      stage: test-slow-first
     - TOXENV=py36-pexpect
     - TOXENV=py36-xdist
     - TOXENV=py36-trial
     - TOXENV=py36-numpy
     - TOXENV=py36-pluggymaster
+      stage: test-slow-first
     - TOXENV=py27-nobyte
     - TOXENV=doctesting
     - TOXENV=docs
 
 jobs:
   include:
-    - env: TOXENV=pypy
+    - stage: test-slow-first
+      env: TOXENV=pypy
       python: 'pypy-5.4'
-    - env: TOXENV=py35
+    - stage: test-slow-first
+      env: TOXENV=py35
       python: '3.5'
-    - env: TOXENV=py35-freeze
+    - stage: test-slow-first
+      env: TOXENV=py35-freeze
       python: '3.5'
-    - env: TOXENV=py37
+    - stage: test-slow-first
+      env: TOXENV=py37
       python: 'nightly'
 
     - stage: deploy
