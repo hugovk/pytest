@@ -9,8 +9,8 @@ python:
   - '3.6'
 install:
   - pip install --upgrade --pre tox
-env:
-  matrix:
+jobs:
+  include:
     # coveralls is not listed in tox's envlist, but should run in travis
     - env: TOXENV=coveralls
     # note: please use "tox --listenvs" to populate the build matrix below
@@ -37,8 +37,8 @@ env:
     - env: TOXENV=doctesting
     - env: TOXENV=docs
 
-jobs:
-  include:
+#jobs:
+#  include:
     - stage: test-slow-first
       env: TOXENV=pypy
       python: 'pypy-5.4'
