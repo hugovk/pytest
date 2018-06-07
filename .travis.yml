@@ -17,25 +17,27 @@ jobs:
     # please remove the linting env in all cases
 
     - stage: test-slow-first
-      env: TOXENV=py35
-      python: '3.5'
+      env: TOXENV=pypy
+      python: 'pypy-5.4'
     - stage: test-slow-first
-      env: TOXENV=py27-pluggymaster
-    - stage: test-slow-first
-      env: TOXENV=py36-pluggymaster
-    - stage: test-slow-first
-      env: TOXENV=py27
-    - stage: test-slow-first
-      env: TOXENV=py34
+      env: TOXENV=py37
+      python: 'nightly'
     - stage: test-slow-first
       env: TOXENV=py36
     - stage: test-slow-first
       env: TOXENV=py35-freeze
       python: '3.5'
     - stage: test-slow-first
-      env: TOXENV=py37
-      python: 'nightly'
-
+      env: TOXENV=py35
+      python: '3.5'
+    - stage: test-slow-first
+      env: TOXENV=py34
+    - stage: test-slow-first
+      env: TOXENV=py27
+    - stage: test-slow-first
+      env: TOXENV=py27-pluggymaster
+    - stage: test-slow-first
+      env: TOXENV=py36-pluggymaster
 
     - stage: test
       env: TOXENV=py27-pexpect
