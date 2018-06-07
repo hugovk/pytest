@@ -78,15 +78,6 @@ jobs:
 
 script: tox --recreate
 
-notifications:
-  irc:
-    channels:
-      - "chat.freenode.net#pytest"
-    on_success: change
-    on_failure: change
-    skip_join: true
-  email:
-    - pytest-commit@python.org
 cache:
     directories:
         - $HOME/.cache/pip
