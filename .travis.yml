@@ -15,23 +15,23 @@ env:
     - TOXENV=coveralls
     # note: please use "tox --listenvs" to populate the build matrix below
     # please remove the linting env in all cases
-    - TOXENV=py27
+    - env: TOXENV=py27
       stage: test-slow-first
-    - TOXENV=py34
+    - env: TOXENV=py34
       stage: test-slow-first
-    - TOXENV=py36
+    - env: TOXENV=py36
       stage: test-slow-first
     - TOXENV=py27-pexpect
     - TOXENV=py27-xdist
     - TOXENV=py27-trial
     - TOXENV=py27-numpy
-    - TOXENV=py27-pluggymaster
+    - env: TOXENV=py27-pluggymaster
       stage: test-slow-first
     - TOXENV=py36-pexpect
     - TOXENV=py36-xdist
     - TOXENV=py36-trial
     - TOXENV=py36-numpy
-    - TOXENV=py36-pluggymaster
+    - env: TOXENV=py36-pluggymaster
       stage: test-slow-first
     - TOXENV=py27-nobyte
     - TOXENV=doctesting
