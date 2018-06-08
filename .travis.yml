@@ -40,17 +40,17 @@ jobs:
     - env: TOXENV=coveralls
 
     - env: TOXENV=py27-xdist
+    - env: TOXENV=py36-xdist
     - env: TOXENV=py27-nobyte
     - env: TOXENV=py27-pexpect
     - env: TOXENV=py36-pexpect
+    - env: TOXENV=docs
     - env: TOXENV=py27-trial
-    - env: TOXENV=py36-xdist
     - env: TOXENV=py36-trial
 
     - env: TOXENV=py36-numpy
     - env: TOXENV=py27-numpy
     - env: TOXENV=doctesting
-    - env: TOXENV=docs
 
     - stage: deploy
       python: '3.6'
