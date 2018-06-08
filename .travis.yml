@@ -10,8 +10,7 @@ install:
   - pip install --upgrade --pre tox
 jobs:
   include:
-    # coveralls is not listed in tox's envlist, but should run in travis
-    - env: TOXENV=coveralls
+
     # note: please use "tox --listenvs" to populate the build matrix below
     # please remove the linting env in all cases
 
@@ -37,6 +36,10 @@ jobs:
       env: TOXENV=py34
     - stage: test
       env: TOXENV=py27
+
+     # coveralls is not listed in tox's envlist, but should run in travis
+    - env: TOXENV=coveralls
+
 
     - stage: test
       env: TOXENV=py27-pexpect
