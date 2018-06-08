@@ -1,7 +1,6 @@
 sudo: false
 language: python
 stages:
-- linting
 - test
 - deploy
 python:
@@ -11,9 +10,8 @@ install:
 jobs:
   include:
 
-    - stage: test
-      python: '3.6'
-      env:
+    - python: '3.6'
+      env: linting
       install:
       - pip install pre-commit
       - pre-commit install-hooks
@@ -24,55 +22,35 @@ jobs:
     # note: please use "tox --listenvs" to populate the build matrix below
     # please remove the linting env in all cases
 
-    - stage: test
-      env: TOXENV=pypy
+    - env: TOXENV=pypy
       python: 'pypy-5.4'
-    - stage: test
-      env: TOXENV=py36-pluggymaster
-    - stage: test
-      env: TOXENV=py27-pluggymaster
-    - stage: test
-      env: TOXENV=py37
+    - env: TOXENV=py36-pluggymaster
+    - env: TOXENV=py27-pluggymaster
+    - env: TOXENV=py37
       python: 'nightly'
-    - stage: test
-      env: TOXENV=py36
-    - stage: test
-      env: TOXENV=py35-freeze
+    - env: TOXENV=py36
+    - env: TOXENV=py35-freeze
       python: '3.5'
-    - stage: test
-      env: TOXENV=py35
+    - env: TOXENV=py35
       python: '3.5'
-    - stage: test
-      env: TOXENV=py34
-    - stage: test
-      env: TOXENV=py27
+    - env: TOXENV=py34
+    - env: TOXENV=py27
 
      # coveralls is not listed in tox's envlist, but should run in travis
     - env: TOXENV=coveralls
 
+    - env: TOXENV=py27-xdist
+    - env: TOXENV=py27-nobyte
+    - env: TOXENV=py27-pexpect
+    - env: TOXENV=py36-pexpect
+    - env: TOXENV=py27-trial
+    - env: TOXENV=py36-xdist
+    - env: TOXENV=py36-trial
 
-    - stage: test
-      env: TOXENV=py27-pexpect
-    - stage: test
-      env: TOXENV=py27-xdist
-    - stage: test
-      env: TOXENV=py27-trial
-    - stage: test
-      env: TOXENV=py27-numpy
-    - stage: test
-      env: TOXENV=py36-pexpect
-    - stage: test
-      env: TOXENV=py36-xdist
-    - stage: test
-      env: TOXENV=py36-trial
-    - stage: test
-      env: TOXENV=py36-numpy
-    - stage: test
-      env: TOXENV=py27-nobyte
-    - stage: test
-      env: TOXENV=doctesting
-    - stage: test
-      env: TOXENV=docs
+    - env: TOXENV=py36-numpy
+    - env: TOXENV=py27-numpy
+    - env: TOXENV=doctesting
+    - env: TOXENV=docs
 
     - stage: deploy
       python: '3.6'
