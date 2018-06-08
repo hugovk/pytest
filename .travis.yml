@@ -11,6 +11,16 @@ install:
 jobs:
   include:
 
+    - stage: test
+      python: '3.6'
+      env:
+      install:
+      - pip install pre-commit
+      - pre-commit install-hooks
+      script:
+      - pre-commit run --all-files
+
+
     # note: please use "tox --listenvs" to populate the build matrix below
     # please remove the linting env in all cases
 
@@ -79,14 +89,6 @@ jobs:
         on:
           tags: true
           repo: pytest-dev/pytest
-    - stage: linting
-      python: '3.6'
-      env:
-      install:
-      - pip install pre-commit
-      - pre-commit install-hooks
-      script:
-      - pre-commit run --all-files
 
 script: tox --recreate
 
