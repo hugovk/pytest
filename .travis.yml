@@ -19,6 +19,10 @@ jobs:
       env: TOXENV=pypy
       python: 'pypy-5.4'
     - stage: test
+      env: TOXENV=py36-pluggymaster
+    - stage: test
+      env: TOXENV=py27-pluggymaster
+    - stage: test
       env: TOXENV=py37
       python: 'nightly'
     - stage: test
@@ -33,10 +37,6 @@ jobs:
       env: TOXENV=py34
     - stage: test
       env: TOXENV=py27
-    - stage: test
-      env: TOXENV=py27-pluggymaster
-    - stage: test
-      env: TOXENV=py36-pluggymaster
 
     - stage: test
       env: TOXENV=py27-pexpect
