@@ -3,7 +3,7 @@ dist: xenial
 stages:
 - baseline
 - name: test
-  if: repo = pytest-dev/pytest AND tag IS NOT present
+#  if: repo = pytest-dev/pytest AND tag IS NOT present
 - name: deploy
   if: repo = pytest-dev/pytest AND tag IS present
 python: '3.8'
