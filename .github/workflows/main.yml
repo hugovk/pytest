@@ -79,7 +79,7 @@ jobs:
             os: windows-latest
             tox_env: "py310-xdist"
           - name: "windows-py311"
-            python: "3.11"
+            python: "3.11-dev"
             os: windows-latest
             tox_env: "py311-xdist"
 
@@ -109,7 +109,7 @@ jobs:
             os: ubuntu-latest
             tox_env: "py310-xdist"
           - name: "ubuntu-py311"
-            python: "3.11"
+            python: "3.11-dev"
             os: ubuntu-latest
             tox_env: "py311-xdist"
           - name: "ubuntu-pypy3"
@@ -135,7 +135,7 @@ jobs:
             os: macos-latest
             tox_env: "py310-xdist"
           - name: "macos-py311"
-            python: "3.11"
+            python: "3.11-dev"
             os: macos-latest
             tox_env: "py311-xdist"
 
