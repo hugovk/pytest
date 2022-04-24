@@ -96,7 +96,7 @@ def pytest_addoption(parser: Parser) -> None:
         dest="markexpr",
         default="",
         metavar="MARKEXPR",
-        help="only run tests matching given mark expression.\n"
+        help="Only run tests matching given mark expression.\n"
         "For example: -m 'mark1 and not mark2'.",
     )
 

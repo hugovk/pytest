@@ -46,7 +46,7 @@ if TYPE_CHECKING:
 
 
 def pytest_addoption(parser: Parser) -> None:
-    group = parser.getgroup("terminal reporting", "reporting", after="general")
+    group = parser.getgroup("terminal reporting", "Reporting", after="general")
     group.addoption(
         "--durations",
         action="store",
