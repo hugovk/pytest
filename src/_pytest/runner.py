@@ -53,7 +53,7 @@ def pytest_addoption(parser: Parser) -> None:
         type=int,
         default=None,
         metavar="N",
-        help="show N slowest setup/test durations (N=0 for all).",
+        help="Show N slowest setup/test durations (N=0 for all)",
     )
     group.addoption(
         "--durations-min",
@@ -61,7 +61,8 @@ def pytest_addoption(parser: Parser) -> None:
         type=float,
         default=0.005,
         metavar="N",
-        help="Minimal duration in seconds for inclusion in slowest list. Default 0.005",
+        help="Minimal duration in seconds for inclusion in slowest list. "
+        "Default: 0.005.",
     )
 
 

@@ -71,9 +71,9 @@ def test_empty_help_param(pytester: Pytester) -> None:
     assert result.ret == 0
     lines = [
         "  required_plugins (args):",
-        "                        plugins that must be present for pytest to run*",
+        "                        Plugins that must be present for pytest to run*",
         "  test_ini (bool):*",
-        "environment variables:",
+        "Environment variables:",
     ]
     result.stdout.fnmatch_lines(lines, consecutive=True)
 
