@@ -680,9 +680,9 @@ class AssertionRewriter(ast.NodeVisitor):
             if (
                 expect_docstring
                 and isinstance(item, ast.Expr)
-                and isinstance(item.value, ast.Str)
+                and isinstance(item.value, ast.Constant)
             ):
-                doc = item.value.s
+                doc = item.value.value
                 if self.is_rewrite_disabled(doc):
                     return
                 expect_docstring = False
@@ -938,7 +938,7 @@ class AssertionRewriter(ast.NodeVisitor):
         # Clear temporary variables by setting them to None.
         if self.variables:
             variables = [ast.Name(name, ast.Store()) for name in self.variables]
-            clear = ast.Assign(variables, ast.NameConstant(None))
+            clear = ast.Assign(variables, ast.Constant(None))
             self.statements.append(clear)
         # Fix locations (line numbers/column offsets).
         for stmt in self.statements:
@@ -962,7 +962,7 @@ class AssertionRewriter(ast.NodeVisitor):
         # Display the repr of the name if it's a local variable or
         # _should_repr_global_name() thinks it's acceptable.
         locs = ast.Call(self.builtin("locals"), [], [])
-        inlocs = ast.Compare(ast.Str(name.id), [ast.In()], [locs])
+        inlocs = ast.Compare(ast.Constant(name.id), [ast.In()], [locs])
         dorepr = self.helper("_should_repr_global_name", name)
         test = ast.BoolOp(ast.Or(), [inlocs, dorepr])
         expr = ast.IfExp(test, self.display(name), ast.Str(name.id))
@@ -1001,7 +1001,7 @@ class AssertionRewriter(ast.NodeVisitor):
             self.push_format_context()
             res, expl = self.visit(v)
             body.append(ast.Assign([ast.Name(res_var, ast.Store())], res))
-            expl_format = self.pop_format_context(ast.Str(expl))
+            expl_format = self.pop_format_context(ast.Constant(expl))
             call = ast.Call(app, [expl_format], [])
             self.expl_stmts.append(ast.Expr(call))
             if i < levels:
@@ -1099,9 +1099,9 @@ class AssertionRewriter(ast.NodeVisitor):
                 next_expl = f"({next_expl})"
             results.append(next_res)
             sym = BINOP_MAP[op.__class__]
-            syms.append(ast.Str(sym))
+            syms.append(ast.Constant(sym))
             expl = f"{left_expl} {sym} {next_expl}"
-            expls.append(ast.Str(expl))
+            expls.append(ast.Constant(expl))
             res_expr = ast.Compare(left_res, [op], [next_res])
             self.statements.append(ast.Assign([store_names[i]], res_expr))
             left_res, left_expl = next_res, next_expl
