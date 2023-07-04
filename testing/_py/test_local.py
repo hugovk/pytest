@@ -205,7 +205,7 @@ class CommonFSTests:
 
     @pytest.mark.parametrize(
         "fil",
-        ["*dir", "*dir", pytest.mark.skip("sys.version_info <" " (3,6)")(b"*dir")],
+        ["*dir", "*dir", b"*dir"],
     )
     def test_visit_filterfunc_is_string(self, path1, fil):
         lst = []
@@ -459,12 +459,10 @@ class CommonFSTests:
 
         assert fspath(path1) == path1.strpath
 
-    @pytest.mark.skip("sys.version_info < (3,6)")
     def test_fspath_open(self, path1):
         f = path1.join("opentestfile")
         open(f)
 
-    @pytest.mark.skip("sys.version_info < (3,6)")
     def test_fspath_fsencode(self, path1):
         from os import fsencode
 
@@ -1519,9 +1517,9 @@ class TestPOSIXLocalPath:
         path1.chown(owner, group)
 
 
-class TestUnicodePy2Py3:
+class TestUnicode:
     def test_join_ensure(self, tmpdir, monkeypatch):
-        if sys.version_info >= (3, 0) and "LANG" not in os.environ:
+        if "LANG" not in os.environ:
             pytest.skip("cannot run test without locale")
         x = local(tmpdir.strpath)
         part = "hällo"
@@ -1529,7 +1527,7 @@ class TestUnicodePy2Py3:
         assert x.join(part) == y
 
     def test_listdir(self, tmpdir):
-        if sys.version_info >= (3, 0) and "LANG" not in os.environ:
+        if "LANG" not in os.environ:
             pytest.skip("cannot run test without locale")
         x = local(tmpdir.strpath)
         part = "hällo"
